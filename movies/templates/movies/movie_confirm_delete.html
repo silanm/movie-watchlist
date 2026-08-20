@@ -1,11 +1,13 @@
 {% extends "movies/base.html" %}
-{% block title %}Delete Movie{% endblock %}
+{% block title %}Delete {{ movie.title }}{% endblock %}
 {% block content %}
-    <h2>Delete Movie</h2>
-    <p>Are you sure you want to delete "{{ movie.title }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, Delete</button>
-        <a href="{% url 'movie_list' %}">No, Cancel</a>
-    </form>
+    <div class="form-rail">
+        <h1>Delete movie</h1>
+        <p>Delete “{{ movie.title }}”? This cannot be undone.</p>
+        <form method="post" class="form-actions">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">Delete</button>
+            <a class="btn btn-ghost" href="{% url 'movie_list' %}">Cancel</a>
+        </form>
+    </div>
 {% endblock %}

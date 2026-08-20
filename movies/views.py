@@ -28,7 +28,6 @@ def movie_update(request, pk):
         form = MovieForm(request.POST, instance=movie)
         if form.is_valid():
             form.save()
-            messages.success(request, "Movie updated successfully")
             return redirect("movie_list")
     else:
         form = MovieForm(instance=movie)
@@ -47,7 +46,6 @@ def toggle_watched(request, pk):
     if request.method == "POST":
         movie.watched = not movie.watched
         movie.save()
-        messages.success(request, "Movie watched status toggled")
         return redirect("movie_list")
     else:
         return render(request, "movies/movie_confirm_toggle_watched.html", {"movie": movie})

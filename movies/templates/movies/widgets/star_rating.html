@@ -1,0 +1,13 @@
+<div class="star-picker">
+    <div class="star-rating" role="radiogroup" aria-label="Rating">
+        {% for group, options, index in widget.optgroups %}
+            {% for option in options %}
+                {% include option.template_name with widget=option %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <div class="star-clear">
+        <input type="radio" name="{{ widget.name }}" value="" id="{{ widget.attrs.id }}_none"{% if not widget.value %} checked{% endif %}>
+        <label for="{{ widget.attrs.id }}_none">Not rated</label>
+    </div>
+</div>

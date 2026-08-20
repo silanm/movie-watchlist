@@ -1,0 +1,51 @@
+:root {
+    --color-paper: oklch(97.2% 0.012 142);
+    --color-paper-2: oklch(94.4% 0.018 142);
+    --color-paper-3: oklch(99% 0.006 142);
+    --color-ink: oklch(38% 0.012 142);
+    --color-ink-2: oklch(48% 0.01 142);
+    --color-muted: oklch(58% 0.01 142);
+    --color-rule: oklch(78% 0.012 142);
+    --color-accent: oklch(42% 0.082 142);
+    --color-accent-ink: oklch(98% 0.006 142);
+    --color-cta: oklch(74% 0.14 122);
+    --color-cta-hover: oklch(68% 0.13 122);
+    --color-cta-ink: oklch(28% 0.06 130);
+    --color-sage: oklch(70% 0.08 142);
+    --color-star: oklch(42% 0.082 142);
+    --color-star-empty: oklch(48% 0.01 142);
+    --color-danger: oklch(52% 0.16 25);
+    --color-focus: oklch(42% 0.082 142);
+    --color-error: oklch(52% 0.18 25);
+    --control-h: 2.5rem;
+
+    --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+    --font-body: "Source Sans 3", "Source Sans Pro", "Segoe UI", sans-serif;
+
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+    --space-2xl: 4.5rem;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-md: 1.125rem;
+    --text-lg: 1.375rem;
+    --text-xl: 1.75rem;
+    --text-display: clamp(1.75rem, 2vw + 1rem, 2.25rem);
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --dur-short: 150ms;
+    --dur-hover: 180ms;
+
+    --radius-input: 2px;
+    --radius-card: 0;
+    --page-gutter: clamp(1rem, 4vw, 2.5rem);
+    --measure: 36rem;
+}

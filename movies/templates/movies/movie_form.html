@@ -1,10 +1,21 @@
 {% extends "movies/base.html" %}
-{% block title %}{{ action }} Movie{% endblock %}
+{% block title %}{{ action }} movie{% endblock %}
 {% block content %}
-    <h2>{{ action }} Movie</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_div }}
-        <button type="submit">{{ button_text }}</button>
-    </form>
+    <div class="form-rail">
+        <h1>{{ action }} movie</h1>
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+            {% endfor %}
+            <div class="form-actions">
+                <button class="btn btn-cta" type="submit">{{ button_text }}</button>
+                <a class="btn btn-ghost" href="{% url 'movie_list' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
 {% endblock %}

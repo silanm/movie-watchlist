@@ -1,0 +1,6 @@
+{% include "django/forms/widgets/input.html" %}
+<label {% if widget.attrs.id %}for="{{ widget.attrs.id }}"{% endif %} title="{{ widget.value }} star{{ widget.value|pluralize }}">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 2.6 14.6 9l6.9.6-5.3 4.5 1.6 6.7L12 17.6 6.2 20.8l1.6-6.7L2.5 9.6 9.4 9 12 2.6z"/>
+    </svg>
+</label>

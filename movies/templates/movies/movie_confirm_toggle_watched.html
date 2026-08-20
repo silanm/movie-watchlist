@@ -1,11 +1,18 @@
 {% extends "movies/base.html" %}
-{% block title %}Toggle Watched{% endblock %}
+{% block title %}Toggle watched{% endblock %}
 {% block content %}
-    <h2>Toggle Watched</h2>
-    <p>Are you sure you want to toggle the watched status of "{{ movie.title }}"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Toggle Watched</button>
-        <a href="{% url 'movie_list' %}">No, Cancel</a>
-    </form>
+    <div class="form-rail">
+        <h1>Update watched status</h1>
+        <p>
+            Mark “{{ movie.title }}” as
+            {% if movie.watched %}unwatched{% else %}watched{% endif %}?
+        </p>
+        <form method="post" class="form-actions">
+            {% csrf_token %}
+            <button class="btn btn-cta" type="submit">
+                {% if movie.watched %}Mark unwatched{% else %}Mark watched{% endif %}
+            </button>
+            <a class="btn btn-ghost" href="{% url 'movie_list' %}">Cancel</a>
+        </form>
+    </div>
 {% endblock %}

@@ -1,15 +1,68 @@
 {% extends "movies/base.html" %}
+{% block title %}Watchlist{% endblock %}
 {% block content %}
-    <h2>Movie List</h2>
-    <form method="get">
-        <input type="text" name="q" placeholder="Search movies" value="{{ q }}">
-        <button type="submit">Search</button>
-    </form>
-    <ul>
-        {% for movie in movies %}
-            <li>{{ movie.title }} - {{ movie.get_genre_display }} - {{ movie.release_year }} - {{ movie.rating }} - {{ movie.watched }} - <a href="{% url 'movie_update' movie.pk %}">Edit</a> - <a href="{% url 'movie_delete' movie.pk %}">Delete</a> - <a href="{% url 'toggle_watched' movie.pk %}">Toggle Watched</a></li>
-        {% empty %}
-            <li>No movies in your watchlist yet. Add a movie to get started!</li>
-        {% endfor %}
-    </ul>
+    <div class="workbench-head">
+        <h1>Your movies</h1>
+        <form class="search" method="get" role="search">
+            <label class="visually-hidden" for="q">Search by title</label>
+            <input class="field-input" id="q" type="search" name="q" placeholder="Search by title" value="{{ q }}">
+            <button class="btn btn-ghost" type="submit">Search</button>
+        </form>
+    </div>
+
+    {% if movies %}
+        <div class="ledger-wrap">
+            <table class="ledger">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Genre</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Rating</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for movie in movies %}
+                    <tr>
+                        <th scope="row">{{ movie.title }}</th>
+                        <td>{{ movie.get_genre_display|default:"—" }}</td>
+                        <td class="num">{{ movie.release_year|default:"—" }}</td>
+                        <td>{% include "movies/stars.html" with rating=movie.rating %}</td>
+                        <td>
+                            {% if movie.watched %}
+                                <span class="badge badge-watched">Watched</span>
+                            {% else %}
+                                <span class="badge badge-unwatched">Unwatched</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="movie-actions">
+                                <a class="btn btn-sm btn-ghost" href="{% url 'movie_update' movie.pk %}">Edit</a>
+                                <form method="post" action="{% url 'toggle_watched' movie.pk %}">
+                                    {% csrf_token %}
+                                    <button class="btn btn-sm btn-ghost" type="submit">
+                                        {% if movie.watched %}Unwatch{% else %}Watch{% endif %}
+                                    </button>
+                                </form>
+                                <a class="btn btn-sm btn-danger" href="{% url 'movie_delete' movie.pk %}">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            {% if q %}
+                <p>No titles match “{{ q }}”.</p>
+                <a class="btn btn-ghost" href="{% url 'movie_list' %}">Clear search</a>
+            {% else %}
+                <p>Your watchlist is empty.</p>
+                <a class="btn btn-cta" href="{% url 'movie_create' %}">Add a movie</a>
+            {% endif %}
+        </div>
+    {% endif %}
 {% endblock %}
