@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Movie Watchlist{% endblock %}</title>
+    </head>
+    <body>
+        <h1>Movie Watchlist</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'movie_list' %}">Home</a></li>
+                <li><a href="{% url 'movie_create' %}">Add Movie</a></li>
+            </ul>
+        </nav>
+        <main>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block content %}{% endblock %}
+        </main>
+    </body>
+</html>

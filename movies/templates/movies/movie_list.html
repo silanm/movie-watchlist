@@ -1,0 +1,15 @@
+{% extends "movies/base.html" %}
+{% block content %}
+    <h2>Movie List</h2>
+    <form method="get">
+        <input type="text" name="q" placeholder="Search movies" value="{{ q }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie.title }} - {{ movie.get_genre_display }} - {{ movie.release_year }} - {{ movie.rating }} - {{ movie.watched }} - <a href="{% url 'movie_update' movie.pk %}">Edit</a> - <a href="{% url 'movie_delete' movie.pk %}">Delete</a> - <a href="{% url 'toggle_watched' movie.pk %}">Toggle Watched</a></li>
+        {% empty %}
+            <li>No movies in your watchlist yet. Add a movie to get started!</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "movies/base.html" %}
+{% block title %}Toggle Watched{% endblock %}
+{% block content %}
+    <h2>Toggle Watched</h2>
+    <p>Are you sure you want to toggle the watched status of "{{ movie.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Toggle Watched</button>
+        <a href="{% url 'movie_list' %}">No, Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "movies/base.html" %}
+{% block title %}{{ action }} Movie{% endblock %}
+{% block content %}
+    <h2>{{ action }} Movie</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit">{{ button_text }}</button>
+    </form>
+{% endblock %}
